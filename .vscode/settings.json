@@ -27,13 +27,18 @@
     "editor.formatOnSave": true
   },
   "editor.lineNumbers": "on",
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
   "editor.wordWrap": "on",
   "eslint.packageManager": "yarn",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "npm.packageManager": "yarn",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  // workspace用設定 ex:src/client&server
+  "eslint.nodePath": "/Users/yamashitayoshimasa/ドキュメント/WebScraping/node_modules",
+  "eslint.workingDirectories": [
+    { "directory": "./src/client", "changeProcessCWD": true },
+    { "directory": "./src/server", "changeProcessCWD": true },
+	]
+
 }
