@@ -1,0 +1,11 @@
+/* Home */
+.shop-link {
+  display: block;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+.search-field {
+  margin-bottom: 10px;
+}
