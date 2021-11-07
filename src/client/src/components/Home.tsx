@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-alert */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -22,14 +26,16 @@ import Typography from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import { Alert } from '@mui/material';
 import './Home.css';
 
 interface Names {
   names: string;
   prices: string;
   id: string;
+  flag: boolean;
   HomeInput: any; // 親コンポーネントに値を渡す関数
-  GpuSearch: any;
+  searchName: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,25 +43,37 @@ const Copyright = (props: any) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Typography variant="body2" color="text.secondary" align="center" {...props}>
     {'Copyright © '}
-    GPU Search
-    {new Date().getFullYear()}.
+    GPU Search {new Date().getFullYear()}.
   </Typography>
 );
 
-const Home: FC<Names> = ({ names, prices, id, HomeInput, GpuSearch }) => {
+const Home: FC<Names> = ({
+  names,
+  prices,
+  id,
+  flag = false,
+  HomeInput,
+  searchName,
+}) => {
   const [search, setSearch] = useState('1650');
+  const [input, setInput] = useState('1650');
 
   const handleChange = (e: any) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    setSearch(() => e.target.value);
+    setInput(() => e.target.value);
   };
 
-  const NoItemAlert = () => {
-    // eslint-disable-next-line no-alert
-    alert(
-      `${search}と一致する商品はありません。\n別のキーワードで検索してください。`,
+  const NoItemAlert = (indicateFlag: boolean) =>
+    indicateFlag ? (
+      <Alert className="alert" severity="error">
+        {`${searchName}と一致する商品はありません。
+        `}
+        <br />
+        別のキーワードで検索してください。
+      </Alert>
+    ) : (
+      ''
     );
-  };
 
   const tiers = [
     {
@@ -130,14 +148,13 @@ const Home: FC<Names> = ({ names, prices, id, HomeInput, GpuSearch }) => {
               label="Search field"
               type="text"
               variant="outlined"
-              value={search}
+              value={input}
               onChange={handleChange}
               onKeyPress={(e) => {
                 if (e.key === 'Enter') {
                   // エンターキー押下時の処理
+                  setSearch(input);
                   HomeInput(search);
-                  // eslint-disable-next-line no-unused-expressions
-                  GpuSearch() || NoItemAlert();
                 }
               }}
             />
@@ -147,17 +164,12 @@ const Home: FC<Names> = ({ names, prices, id, HomeInput, GpuSearch }) => {
             className="search-button"
             variant="contained"
             onClick={() => {
-              const noitemflag = HomeInput(search);
-              if (noitemflag) {
-                // eslint-disable-next-line no-alert
-                alert(
-                  `${search}と一致する商品はありません。\n別のキーワードで検索してください。`,
-                );
-              }
+              HomeInput(search);
             }}
           >
             Search
           </Button>
+          {NoItemAlert(flag)}
         </Grid>
       </Container>
       {/* End hero unit */}

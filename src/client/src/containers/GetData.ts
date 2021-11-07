@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-void */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -5,6 +7,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import axios from 'axios';
+
+let c1 = 0;
+let c2 = 0;
+let c3 = 0;
 
 export const GetNames = async () => {
   let nameResponse: any;
@@ -20,9 +26,12 @@ export const GetNames = async () => {
     }
   } catch (error) {
     console.error(error);
+    c1 <= 5
+      ? (c1 += 1) && void GetNames()
+      : console.error('namesデータを取得できません。');
+  } finally {
+    return nameResponse;
   }
-
-  return nameResponse;
 };
 
 export const GetPrices = async () => {
@@ -40,9 +49,12 @@ export const GetPrices = async () => {
     }
   } catch (error) {
     console.error(error);
+    c2 <= 5
+      ? (c2 += 1) && void GetPrices()
+      : console.error('pericesデータを取得できません。');
+  } finally {
+    return priceResponse;
   }
-
-  return priceResponse;
 };
 
 export const GetId = async () => {
@@ -59,8 +71,10 @@ export const GetId = async () => {
       throw new RangeError('blank');
     }
   } catch (error) {
-    console.error(error);
+    c3 <= 5
+      ? (c3 += 1) && void GetId()
+      : console.error('idデータを取得できません。');
+  } finally {
+    return idResponse;
   }
-
-  return idResponse;
 };

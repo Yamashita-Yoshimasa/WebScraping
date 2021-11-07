@@ -3,14 +3,10 @@
 import puppeteer from 'puppeteer';
 import dotenv from 'dotenv';
 
-export const OpenPage = async (
-  nflag: number,
-  pflag: number,
-  idflag: number,
-) => {
+export const OpenPage = async () => {
   let pckoubouNames: unknown = [];
   let pckoubouPrices: unknown = [];
-  let pckoubouLink: unknown = [];
+  let pckoubouId: unknown = [];
   dotenv.config();
   const browser = await puppeteer.launch({
     headless: true,
@@ -21,29 +17,28 @@ export const OpenPage = async (
     waitUntil: 'networkidle2',
     timeout: 0,
   });
-  if (nflag === 1) {
-    pckoubouNames = await page.$$eval('.name', (item) =>
-      item.map((names) => names.textContent),
-    );
-  } else if (pflag === 1) {
-    pckoubouPrices = await page.$$eval('.price--num', (item) =>
-      item.map((prices) => prices.textContent),
-    );
-  } else if (idflag === 1) {
-    pckoubouLink = await page.$$eval('.item-code > dd', (item) =>
-      item.map((id) => id.textContent),
-    );
-  }
+  pckoubouNames = await page.$$eval('.name', (item) =>
+    item.map((names) => names.textContent),
+  );
+  pckoubouPrices = await page.$$eval('.price--num', (item) =>
+    item.map((prices) => prices.textContent),
+  );
+  pckoubouId = await page.$$eval('.item-code > dd', (item) =>
+    item.map((id) => id.textContent),
+  );
 
   await browser.close();
   // unknown型ガードl
-
-  if (nflag === 1 && typeof pckoubouNames === 'object')
-    return Promise.resolve(pckoubouNames);
-  if (pflag === 1 && typeof pckoubouPrices === 'object')
-    return Promise.resolve(pckoubouPrices);
-  if (idflag === 1 && typeof pckoubouLink === 'object')
-    return Promise.resolve(pckoubouLink);
+  if (
+    typeof pckoubouNames === 'object' &&
+    pckoubouNames != null &&
+    typeof pckoubouPrices === 'object' &&
+    pckoubouPrices != null &&
+    typeof pckoubouId === 'object' &&
+    pckoubouId != null
+  ) {
+    return Promise.resolve([pckoubouNames, pckoubouPrices, pckoubouId]);
+  }
 };
 
 export default OpenPage;
