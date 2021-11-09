@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ../../src/server/public/
+          path: src/server/public/
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,4 +52,4 @@ jobs:
           app-name: 'GPUWebScraping'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_65F1607A11274AA2817B5DC0CAB3C52B }}
-          package: ../../src/server/
+          package: src/server/
