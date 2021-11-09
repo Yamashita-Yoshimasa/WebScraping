@@ -1,14 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-alert */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/no-unused-prop-types */
 import React, { FC, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -21,8 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import StarIcon from '@mui/icons-material/StarBorder';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-// import Link from '@mui/material/Link';
+import Typography, { TypographyProps } from '@mui/material/Typography';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
@@ -34,12 +22,10 @@ interface Names {
   prices: string;
   id: string;
   flag: boolean;
-  HomeInput: any; // 親コンポーネントに値を渡す関数
-  searchName: string;
+  HomeInput: (homeinput: string) => void; // 親コンポーネントに値を渡す関数
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Copyright = (props: any) => (
+const Copyright = (props: TypographyProps) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Typography variant="body2" color="text.secondary" align="center" {...props}>
     {'Copyright © '}
@@ -47,26 +33,18 @@ const Copyright = (props: any) => (
   </Typography>
 );
 
-const Home: FC<Names> = ({
-  names,
-  prices,
-  id,
-  flag = false,
-  HomeInput,
-  searchName,
-}) => {
+const Home: FC<Names> = ({ names, prices, id, flag = false, HomeInput }) => {
   const [search, setSearch] = useState('1650');
   const [input, setInput] = useState('1650');
 
-  const handleChange = (e: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    setInput(() => e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
   };
 
   const NoItemAlert = (indicateFlag: boolean) =>
     indicateFlag ? (
       <Alert className="alert" severity="error">
-        {`${searchName}と一致する商品はありません。
+        {`${search}と一致する商品はありません。
         `}
         <br />
         別のキーワードで検索してください。
@@ -154,7 +132,7 @@ const Home: FC<Names> = ({
                 if (e.key === 'Enter') {
                   // エンターキー押下時の処理
                   setSearch(input);
-                  HomeInput(search);
+                  HomeInput(input);
                 }
               }}
             />
@@ -164,7 +142,8 @@ const Home: FC<Names> = ({
             className="search-button"
             variant="contained"
             onClick={() => {
-              HomeInput(search);
+              setSearch(input);
+              HomeInput(input);
             }}
           >
             Search

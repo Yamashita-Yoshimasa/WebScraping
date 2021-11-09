@@ -46,7 +46,6 @@ const Scraping: FC = () => {
   let priceArray: string[] = [];
   let idArray: string[] = [];
   const searchGPU = Array(nameArray.length);
-  const searchName = search;
 
   const CreateArray = async () => {
     nameArray = names.substring(2, len - 2).split('","');
@@ -55,7 +54,7 @@ const Scraping: FC = () => {
   };
   const GpuSearch = async () => {
     for (let i = 0; i < nameArray.length; i++) {
-      if (nameArray[i].includes(searchName)) {
+      if (nameArray[i].includes(search)) {
         searchGPU[0] = nameArray[i];
         setGpu(searchGPU[0]);
         setGpuprice(priceArray[i]);
@@ -64,7 +63,7 @@ const Scraping: FC = () => {
         break;
       } else if (
         i === nameArray.length - 1 &&
-        nameArray[i].includes(searchName) === false &&
+        nameArray[i].includes(search) === false &&
         nameArray.length > 1
       ) {
         setFlag(true);
@@ -93,7 +92,6 @@ const Scraping: FC = () => {
       id={gpuId}
       flag={flag}
       HomeInput={HomeInput}
-      searchName={searchName}
     />
   );
 };
