@@ -1,8 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable consistent-return */
 import puppeteer from 'puppeteer';
 import dotenv from 'dotenv';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 export const OpenPage = async () => {
   let pckoubouNames: unknown = [];
   let pckoubouPrices: unknown = [];
@@ -40,5 +46,3 @@ export const OpenPage = async () => {
     return Promise.resolve([pckoubouNames, pckoubouPrices, pckoubouId]);
   }
 };
-
-export default OpenPage;
