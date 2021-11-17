@@ -26,7 +26,7 @@
     ]
   },
   "scripts": {
-    "start": "node --es-module-specifier-resolution=node src/server/build/index.js",
+    "start": "yarn sv:bck",
     "cl:start": "yarn workspace client start",
     "cl:install": "yarn workspace client install",
     "sv:start": "yarn workspace server start",

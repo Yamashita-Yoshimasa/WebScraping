@@ -6,7 +6,7 @@
 import express from 'express';
 import { OpenPage } from './containers/Puppeteer';
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 let namesResolve: any;
