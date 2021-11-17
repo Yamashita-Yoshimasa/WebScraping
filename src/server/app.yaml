@@ -1,0 +1,10 @@
+env: standard
+instance_class: F1
+runtime: nodejs14
+service: default
+main: ./src/server/build
+
+handlers:
+- url: /build/index.js
+static_dir: build/static
+upload: build/.*\.(json|ico|js|css|png|svg|tff|woff|woff2|eot)$

@@ -6,7 +6,7 @@ const entryPoints = glob.sync('./src/**/*.ts'); // 適宜読み替えてくだ�
 build.build({
   entryPoints,
   outbase: './src', // outbaseを指定することで指定したディレクトリの構造が出力先ディレクトリに反映されるようになる,
-  outdir: './public', // 出力先ディレクトリ
+  outdir: './build', // 出力先ディレクトリ
   // bundle: true,
   format: 'esm',
   platform: 'node', // 'node' 'browser' 'neutral' のいずれかを指定,
