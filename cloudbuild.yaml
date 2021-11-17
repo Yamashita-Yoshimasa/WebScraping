@@ -1,7 +1,7 @@
 
 steps:
   - name: 'gcr.io/cloud-builders/yarn'
-    args: ['yarn workspace server install']
+    args: ['sv:install']
 
   - name: 'gcr.io/cloud-builders/yarn'
     args: ['sv:build']

@@ -27,9 +27,11 @@
   },
   "scripts": {
     "cl:start": "yarn workspace client start",
+    "cl:install": "yarn workspace client install",
     "sv:start": "yarn workspace server start",
     "sv:build": "yarn workspace server build",
     "sv:bck": "yarn workspace server bck",
+    "sv:install": "yarn workspace server install",
     "dev": "run-p cl:start sv:start",
     "fix": "npm run -s format && npm run -s lint:fix",
     "format": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,gql,graphql,json}'",
