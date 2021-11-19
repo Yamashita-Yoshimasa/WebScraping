@@ -15,7 +15,6 @@
 
 # Node.js dependencies:
 node_modules/
-src/client/
 .eslintignore
 .eslintrc.js
 .gitignore
