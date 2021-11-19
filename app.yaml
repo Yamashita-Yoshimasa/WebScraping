@@ -2,7 +2,7 @@ env: standard
 instance_class: F2
 runtime: nodejs14
 service: default
-entrypoint: node --es-module-specifier-resolution=node .src/server/build/index.js
+entrypoint: node --es-module-specifier-resolution=node ./src/server/build/index.js
 
 handlers:
 - url: /pckoubou/names
