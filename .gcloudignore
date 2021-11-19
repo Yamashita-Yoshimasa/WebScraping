@@ -18,3 +18,15 @@ node_modules/
 src/client/
 src/server/node_modules/
 src/server/build/
+.eslintignore
+.eslintrc.js
+.gitignore
+.node-version
+.prettierrc
+.stylelintrc.js
+tsconfig.eslint.json
+tsconfig.json
+yarn-error.log
+yarn.lock
+.vscode/
+.github/

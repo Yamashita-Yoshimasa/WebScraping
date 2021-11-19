@@ -38,7 +38,7 @@
     "lint:style:fix": "stylelint --fix 'src/**/*.{css,less,sass,scss}'",
     "postinstall": "typesync"
   },
-  "proxy": "https://gpuscraping.de.r.appspot.com:8080",
+  "proxy": "https://gpuscraping.de.r.appspot.com",
   "eslintConfig": {
     "extends": [
       "react-app",
