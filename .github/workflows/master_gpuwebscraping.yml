@@ -23,7 +23,7 @@ jobs:
 
       - name: yarn install, build, and test
         run: |
-          yarn cl:install
+          yarn install
           yarn cl:build
 
       - name: Upload artifact for deployment job
