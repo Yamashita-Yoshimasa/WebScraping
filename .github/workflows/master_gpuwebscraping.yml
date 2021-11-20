@@ -52,4 +52,4 @@ jobs:
           app-name: 'GPUWebScraping'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EAFEB80AC9D143368E969DB57FBBE708 }}
-          package: .
+          package: ./src/client/build
