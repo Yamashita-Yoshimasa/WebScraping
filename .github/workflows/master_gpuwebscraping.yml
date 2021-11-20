@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: npm install, build, and test
+      - name: yarn install, build, and test
         run: |
           yarn install
           yarn cl:build
@@ -29,7 +29,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: react-app
+          name: node-app
           path: .
 
   deploy:
