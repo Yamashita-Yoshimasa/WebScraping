@@ -130,3 +130,4 @@ dist
 .history/
 
 src/server/build
+src/client/build

@@ -31,6 +31,7 @@
   },
   "scripts": {
     "cl:start": "yarn workspace client start",
+    "cl:build": "yarn workspace client build",
     "cl:install": "yarn workspace client install",
     "sv:start": "yarn workspace server start",
     "sv:build": "yarn workspace server build",
@@ -101,7 +102,7 @@
     ]
   },
   "volta": {
-    "node": "16.5.0",
+    "node": "14.4.0",
     "yarn": "1.21.1"
   }
 }
