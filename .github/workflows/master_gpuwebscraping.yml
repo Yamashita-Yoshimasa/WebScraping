@@ -27,7 +27,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-        - name: Cache node_modules
+      - name: Cache node_modules
         id: node_modules_cache_id
         uses: actions/cache@v2
         with:
