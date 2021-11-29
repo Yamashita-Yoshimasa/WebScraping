@@ -11,12 +11,15 @@ import axios from 'axios';
 export const GetNames = async () => {
   let nameResponse: any;
   try {
-    nameResponse = await axios.get('/pckoubou/names', {
-      proxy: {
-        host: 'https://gpuscraping.de.r.appspot.com',
-        port: 8081,
+    nameResponse = await axios.get(
+      'https://gpuscraping.de.r.appspot.com/pckoubou/names',
+      {
+        proxy: {
+          host: 'https://gpuscraping.de.r.appspot.com',
+          port: 8081,
+        },
       },
-    });
+    );
     if (nameResponse.data.length === 2) {
       throw new RangeError('blank');
     }
@@ -30,12 +33,15 @@ export const GetNames = async () => {
 export const GetPrices = async () => {
   let priceResponse: any;
   try {
-    priceResponse = await axios.get('/pckoubou/prices', {
-      proxy: {
-        host: 'https://gpuscraping.de.r.appspot.com',
-        port: 8081,
+    priceResponse = await axios.get(
+      'https://gpuscraping.de.r.appspot.com/pckoubou/prices',
+      {
+        proxy: {
+          host: 'https://gpuscraping.de.r.appspot.com',
+          port: 8081,
+        },
       },
-    });
+    );
     if (priceResponse.data.length === 2) {
       console.log(priceResponse);
       throw new RangeError('blank');
@@ -50,12 +56,15 @@ export const GetPrices = async () => {
 export const GetId = async () => {
   let idResponse: any;
   try {
-    idResponse = await axios.get('/pckoubou/id', {
-      proxy: {
-        host: 'https://gpuscraping.de.r.appspot.com',
-        port: 8081,
+    idResponse = await axios.get(
+      'https://gpuscraping.de.r.appspot.com/pckoubou/id',
+      {
+        proxy: {
+          host: 'https://gpuscraping.de.r.appspot.com',
+          port: 8081,
+        },
       },
-    });
+    );
     if (idResponse.data.length === 2) {
       console.log(idResponse);
       throw new RangeError('blank');

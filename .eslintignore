@@ -7,3 +7,4 @@ public/
 .*lintrc.js
 config.js
 build.js
+server.js
