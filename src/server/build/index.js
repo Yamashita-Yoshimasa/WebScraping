@@ -14,39 +14,49 @@ var __async = (__this, __arguments, generator) => {
         reject(e);
       }
     };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    var step = (x) =>
+      x.done
+        ? resolve(x.value)
+        : Promise.resolve(x.value).then(fulfilled, rejected);
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import express from "express";
-import { OpenPage } from "./containers/Puppeteer";
-const PORT = 5e3;
+import express from 'express';
+import { OpenPage } from './containers/Puppeteer';
+import cors from 'cors';
+const PORT = process.env.PORT || 5e3;
 const app = express();
+const corsOptions = {
+  origin: 'https://gpuscraping.azurewebsites.net',
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 let namesResolve;
 let pricesResolve;
 let idResolve;
-const GetData = () => __async(void 0, null, function* () {
-  const Resolve = yield OpenPage();
-  console.log("\u547C\u3073\u51FA\u3057");
-  [namesResolve, pricesResolve, idResolve] = [
-    Resolve == null ? void 0 : Resolve[0],
-    Resolve == null ? void 0 : Resolve[1],
-    Resolve == null ? void 0 : Resolve[2]
-  ];
-});
+const GetData = () =>
+  __async(void 0, null, function* () {
+    const Resolve = yield OpenPage();
+    console.log('\u547C\u3073\u51FA\u3057');
+    [namesResolve, pricesResolve, idResolve] = [
+      Resolve == null ? void 0 : Resolve[0],
+      Resolve == null ? void 0 : Resolve[1],
+      Resolve == null ? void 0 : Resolve[2],
+    ];
+  });
 void GetData();
-app.get("/pckoubou/names", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
+app.get('/pckoubou/names', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   res.json(JSON.stringify(namesResolve));
 });
-app.get("/pckoubou/prices", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
+app.get('/pckoubou/prices', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   res.json(JSON.stringify(pricesResolve));
 });
-app.get("/pckoubou/id", (req, res) => {
-  res.setHeader("Content-Type", "application/json");
+app.get('/pckoubou/id', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
   res.json(JSON.stringify(idResolve));
 });
 app.listen(PORT, () => {
-  console.log("Server running on port %d", PORT);
+  console.log('Server running on port %d', PORT);
 });

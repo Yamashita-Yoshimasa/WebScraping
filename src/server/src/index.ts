@@ -4,10 +4,18 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import express from 'express';
+import cors from 'cors';
 import { OpenPage } from './containers/Puppeteer';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+const corsOptions = {
+  origin: 'https://gpuscraping.azurewebsites.net',
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 let namesResolve: any;
 let pricesResolve: any;
