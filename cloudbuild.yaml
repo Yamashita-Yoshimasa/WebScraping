@@ -4,6 +4,9 @@ steps:
     args: ['install']
 
   - name: 'gcr.io/cloud-builders/yarn'
+    args: ['sv:install']
+
+  - name: 'gcr.io/cloud-builders/yarn'
     args: ['sv:build']
 
   - name: 'gcr.io/cloud-builders/gcloud'
