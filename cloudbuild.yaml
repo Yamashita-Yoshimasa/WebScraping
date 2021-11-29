@@ -2,11 +2,11 @@
 steps:
   - name: 'gcr.io/cloud-builders/yarn'
     args: ['install']
-    working-directory: ./src/server
+    dir: ./src/server
 
   - name: 'gcr.io/cloud-builders/yarn'
     args: ['build']
-    working-directory: ./src/server
+    dir: ./src/server
 
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', './src/server/app.yaml']
