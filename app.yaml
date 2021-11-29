@@ -8,17 +8,17 @@ handlers:
 - url: /pckoubou/names
   script: auto
   http_headers:
-    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net
 
 - url: /pckoubou/prices
   script: auto
   http_headers:
-    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net
 
 - url: /pckoubou/id
   script: auto
   http_headers:
-    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net
 
 automatic_scaling:
   min_instances: 0
