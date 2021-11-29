@@ -7,12 +7,18 @@ entrypoint: node --es-module-specifier-resolution=node ./src/server/build/index.
 handlers:
 - url: /pckoubou/names
   script: auto
+  http_headers:
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
 
 - url: /pckoubou/prices
   script: auto
+  http_headers:
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
 
 - url: /pckoubou/id
   script: auto
+  http_headers:
+    Access-Control-Allow-Origin: https://gpuscraping.azurewebsites.net/
 
 automatic_scaling:
   min_instances: 0
