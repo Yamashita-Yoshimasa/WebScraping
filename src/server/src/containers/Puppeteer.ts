@@ -30,7 +30,7 @@ export const OpenPage = async () => {
     item.map((names) => names.textContent),
   );
   pckoubouPrices = await page.$$eval(
-    '.price__normal > dd > .price--num',
+    '.price--num',
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     (item) => item.map((prices) => ` ${prices.textContent}`),
   );
@@ -42,8 +42,10 @@ export const OpenPage = async () => {
     item.map((stock) => stock.textContent),
   );
 
-  pckoubouSpecial = await page.$$eval('.price__special > .price--num', (item) =>
-    item.map((special) => special.textContent),
+  pckoubouSpecial = await page.$$eval(
+    '.price__special > dd > .price--num',
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    (item) => item.map((special) => ` ${special.textContent}`),
   );
 
   await browser.close();
@@ -57,17 +59,18 @@ export const OpenPage = async () => {
   (() => {
     NamesArray = String(pckoubouNames).split(',');
     PricesArray = String(pckoubouPrices).split(', ');
+    PricesArray[0] = PricesArray[0].slice(1, PricesArray[0].length);
     IdArray = String(pckoubouId).split(',');
     StockArray = String(pckoubouStock).split(',');
-    SpecialArray = String(pckoubouSpecial).split(',');
+    SpecialArray = String(pckoubouSpecial).split(', ');
+    SpecialArray[0] = SpecialArray[0].slice(1, SpecialArray[0].length);
   })();
 
   // 特別価格を適用
   (() => {
     for (let i = 0; i < SpecialArray.length; i += 1) {
       if ((i + 1) % 2 !== 0) {
-        const index = PricesArray.indexOf(SpecialArray[i]);
-        PricesArray.splice(index, index);
+        PricesArray.splice(PricesArray.indexOf(SpecialArray[i]), 1);
       }
     }
   })();
