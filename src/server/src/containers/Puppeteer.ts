@@ -20,13 +20,15 @@ export const OpenPage = async () => {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     headless: true,
   });
+  const iPhone = puppeteer.devices['iPhone XR'];
   const page = await browser.newPage();
+  await page.emulate(iPhone);
   await page.goto(process.env.PC_KOUBOU_URL || '', {
     // ページを読み込むまで待機
     waitUntil: 'networkidle2',
     timeout: 0,
   });
-  pckoubouNames = await page.$$eval('.name', (item) =>
+  pckoubouNames = await page.$$eval('.item-names-title', (item) =>
     item.map((names) => names.textContent),
   );
   pckoubouPrices = await page.$$eval(
