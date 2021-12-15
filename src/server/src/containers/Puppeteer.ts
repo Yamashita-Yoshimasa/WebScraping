@@ -28,7 +28,7 @@ export const OpenPage = async () => {
     waitUntil: 'networkidle2',
     timeout: 0,
   });
-  pckoubouNames = await page.$$eval('.item-names-title', (item) =>
+  pckoubouNames = await page.$$eval('.item-names--title', (item) =>
     item.map((names) => names.textContent),
   );
   pckoubouPrices = await page.$$eval(
