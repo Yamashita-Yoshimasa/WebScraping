@@ -13,3 +13,8 @@
 .alert {
   margin-top: 10px;
 }
+
+.caution {
+  display: flex;
+  justify-content: center;
+}

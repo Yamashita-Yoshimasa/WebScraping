@@ -151,6 +151,7 @@ const Home: FC<Names> = ({ names, prices, id, flag = false, HomeInput }) => {
           {NoItemAlert(flag)}
         </Grid>
       </Container>
+      <p className="caution">※GPUが表示されない場合はリロードしてください</p>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
